@@ -18,7 +18,7 @@ pub struct FirebaseClaims {
     pub email_verified: bool,
     pub email: Option<String>,
     pub phone_number: Option<String>,
-    pub sub: String,
+    pub user_id: String,
     pub auth_time: u64,
     pub firebase: serde_json::Value,
 }
