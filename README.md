@@ -35,7 +35,7 @@ The Firebase Verifier ID backend Rust crate has three primary components:
 * A `FirebaseAuthLayer` Axum middleware layer for injecting the check into the application router.
 
 The `settings.rs` module provides the configuration knobs for customizing the behavior of the crate.
-The only required configuration value is the Firebase Project Number for configuring the `iss` and `aud`
+The only required configuration value is the Firebase Project ID for configuring the `iss` and `aud`
 values of the auth token. Other config values of note are the duration the cache task should wait
 before refreshing the public keys and timing fields for validating the token is unexpired within
 tolerances and boundaries.

@@ -53,7 +53,7 @@ impl<S> FirebaseAuthService<S> {
                 metrics::counter!("firebase-token-auth-rejected", "reason" => "missing-token")
                     .increment(1);
                 tracing::debug!("request missing required firebase auth token");
-                error_response()
+                error_response(StatusCode::FORBIDDEN)
             })?;
 
         if let Some(ref bearer_verifier) = self.verifier.bearer_verifier {
@@ -73,7 +73,7 @@ impl<S> FirebaseAuthService<S> {
             metrics::counter!("firebase-token-auth-rejected", "reason" => "missing-metadata")
                 .increment(1);
             tracing::debug!(token, "token missing metadata");
-            error_response()
+            error_response(StatusCode::UNAUTHORIZED)
         })?;
 
         // Check token header `alg` and `typ` field match the expected values
@@ -85,14 +85,14 @@ impl<S> FirebaseAuthService<S> {
                 typ = metadata.signature_type(),
                 "invalid token metadata headers",
             );
-            return Err(error_response());
+            return Err(error_response(StatusCode::UNAUTHORIZED));
         }
 
         let Some(key_id) = metadata.key_id() else {
             metrics::counter!("firebase-token-auth-rejected", "reason" => "missing-kid")
                 .increment(1);
             tracing::debug!("token missing kid metadata header");
-            return Err(error_response());
+            return Err(error_response(StatusCode::UNAUTHORIZED));
         };
 
         // Validates the token signature and that the expiry (+tolerance) is within the limit
@@ -102,7 +102,7 @@ impl<S> FirebaseAuthService<S> {
                 metrics::counter!("firebase-token-auth-rejected", "reason" => "invalid-token")
                     .increment(1);
                 tracing::debug!(token, key_id, "invalid firebase auth id token");
-                error_response()
+                error_response(StatusCode::UNAUTHORIZED)
             })?;
 
         metrics::counter!("firebase-request-authorized").increment(1);
@@ -140,10 +140,10 @@ where
     }
 }
 
-fn error_response() -> (StatusCode, Json<serde_json::Value>) {
+fn error_response(status_code: StatusCode) -> (StatusCode, Json<serde_json::Value>) {
     let err_resp = serde_json::json!({
         "status": "error",
         "message": "request not authorized",
     });
-    (StatusCode::UNAUTHORIZED, Json(err_resp))
+    (status_code, Json(err_resp))
 }

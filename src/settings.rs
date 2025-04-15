@@ -12,7 +12,7 @@ pub struct Settings {
     #[serde(default = "default_jwk_url")]
     pub url: String,
     /// Firebase project number
-    pub project_num: u64,
+    pub project_id: String,
     /// The maximum amount of time in seconds after a token has expired to allow a token to verify
     pub max_validity_secs: Option<u64>,
     /// How much clock in seconds to tolerate when verifying token timestamps; default 15 min
@@ -59,12 +59,9 @@ impl From<Settings> for VerificationOptions {
             accept_future: settings.accept_future.unwrap_or(default.accept_future),
             allowed_issuers: Some(HashSet::from([format!(
                 "https://securetoken.google.com/{}",
-                settings.project_num
+                settings.project_id
             )])),
-            allowed_audiences: Some(HashSet::from([format!(
-                "projects/{}",
-                settings.project_num
-            )])),
+            allowed_audiences: Some(HashSet::from([settings.project_id.clone()])),
             time_tolerance: settings.time_tolerance().or(default.time_tolerance),
             max_validity: settings.max_validity().or(default.max_validity),
             ..default
