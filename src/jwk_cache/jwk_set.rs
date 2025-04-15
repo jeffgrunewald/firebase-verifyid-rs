@@ -1,6 +1,6 @@
-use super::{Error, HashMap, RS256PublicKey, base64_serde::deserialize};
+use super::{base64_serde::deserialize, Error, HashMap, RS256PublicKey};
 use crate::{ALG, KTY};
-use reqwest::{Response, header::CACHE_CONTROL};
+use reqwest::{header::CACHE_CONTROL, Response};
 use serde::Deserialize;
 use std::time::Duration;
 

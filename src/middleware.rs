@@ -1,9 +1,9 @@
-use super::{ALG, FirebaseClaims, TOKEN_SIG_TYPE, TokenVerifier};
+use super::{FirebaseClaims, TokenVerifier, ALG, TOKEN_SIG_TYPE};
 use axum::{
-    Json,
     extract::Request,
-    http::{StatusCode, header},
+    http::{header, StatusCode},
     response::{IntoResponse, Response},
+    Json,
 };
 use futures_util::future::BoxFuture;
 use jwt_simple::{
