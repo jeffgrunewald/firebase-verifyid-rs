@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Jeff Grunewald <jeff@grunewalddesign.com>"]
 edition = "2024"
 description = "Dead simple verification of firebase auth id tokens"
-license = "MIT or Apache-2.0"
+license = "MIT OR Apache-2.0"
 repository = "https://github.com/jeffgrunewald/firebase-verifyid-rs"
 readme = "README.md"
 
