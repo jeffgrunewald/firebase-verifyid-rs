@@ -1,6 +1,6 @@
 [package]
 name = "firebase-verifyid"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Jeff Grunewald <jeff@grunewalddesign.com>"]
 edition = "2021"
 description = "Dead simple verification of firebase auth id tokens"
