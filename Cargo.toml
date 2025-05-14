@@ -9,7 +9,7 @@ repository = "https://github.com/jeffgrunewald/firebase-verifyid-rs"
 readme = "README.md"
 
 [dependencies]
-axum = ">= 0.7, < 0.8"
+axum = ">= 0.7"
 base64 = ">= 0.22"
 bs58 = "0"
 futures-util = ">= 0.3"
