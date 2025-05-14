@@ -1,6 +1,6 @@
 [package]
 name = "firebase-verifyid"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Jeff Grunewald <jeff@grunewalddesign.com>"]
 edition = "2021"
 description = "Dead simple verification of firebase auth id tokens"
@@ -9,7 +9,7 @@ repository = "https://github.com/jeffgrunewald/firebase-verifyid-rs"
 readme = "README.md"
 
 [dependencies]
-axum = ">= 0.7, < 0.8"
+axum = ">= 0.7"
 base64 = ">= 0.22"
 bs58 = "0"
 futures-util = ">= 0.3"
