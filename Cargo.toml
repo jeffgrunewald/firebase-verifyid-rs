@@ -1,11 +1,11 @@
 [package]
 name = "firebase-verifyid"
 version = "0.1.5"
-authors = ["Jeff Grunewald <jeff@grunewalddesign.com>"]
+authors = ["Nova Labs <info@nova-labs.com>"]
 edition = "2021"
 description = "Dead simple verification of firebase auth id tokens"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/jeffgrunewald/firebase-verifyid-rs"
+repository = "https://github.com/novalabsxyz/firebase-verifyid-rs"
 readme = "README.md"
 
 [dependencies]
